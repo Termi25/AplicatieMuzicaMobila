@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AplicatieMuzicaMobila</string>
+    <string name="stop_button">Stop Button</string>
+    <string name="play_button">Play Button</string>
+    <string name="pause_button">Pause Button</string>
+    <string name="music_player_android">Music Player Android</string>
+</resources>
