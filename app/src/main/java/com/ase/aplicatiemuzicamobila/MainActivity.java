@@ -32,13 +32,13 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer music;
+    PlayButton btnPlayPause;
     ImageView imgV;
 
-    private ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+    private final ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri o) {
-            music = MediaPlayer.create(getApplicationContext(),o);
+            btnPlayPause.changeMediaplayer(MediaPlayer.create(getApplicationContext(),o));
 
             MediaMetadataRetriever mediaMetadataRetriever = (MediaMetadataRetriever) new MediaMetadataRetriever();
             mediaMetadataRetriever.setDataSource(getApplicationContext(), o);
@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
                         .into(imgV);
 
             }catch (Exception e){
-                Log.e("Exception audio file image",e.getMessage());
+                Log.e("Exception audio file image",e.toString());
             }finally {
                 try {
                     mediaMetadataRetriever.release();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    Log.e("Exception Releasing MediaMetadataRetriever",e.toString());
                 }
             }
         }
@@ -72,45 +72,20 @@ public class MainActivity extends AppCompatActivity {
         TextView load=findViewById(R.id.btnLoad);
         load.setOnClickListener(v -> launcher.launch("audio/*"));
 
-        Map<String, String> songList=new HashMap<>();
-        ArrayList<String> audioLists = new ArrayList<>();
-
-        String[] strings = {MediaStore.Audio.Media._ID, MediaStore.Audio.Media.DISPLAY_NAME};
-
-        Cursor cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, strings, null, null, null);
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    int audioIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME);
-                    songList.put(cursor.getString(audioIndex),cursor.getString(audioIndex));
-                    audioLists.add(cursor.getString(audioIndex));
-                } while (cursor.moveToNext());
-            }
-        }
-        cursor.close();
-
-        for (int i = 0 ; i < audioLists.size(); i++ ){
-            Log.e("audioListss" ,"Audio Path ---->>>  " + audioLists.get(i));
-        }
-
-        music = MediaPlayer.create(this,R.raw.bna);
-
+        btnPlayPause=PlayButton.getPlayPauseInstance(findViewById(R.id.btnPlay),MediaPlayer.create(this,R.raw.bna),getApplicationContext());
     }
-
-    public void playSong(View v){
-        music.start();
-    }
-
-    public void pauseSong(View v) {
-        music.pause(); }
 
     public void stopSong(View v) {
-        music.stop();
-        music = MediaPlayer.create(this, R.raw.bna);
+        btnPlayPause.stopSong(v);
         Glide.with(getApplicationContext())
                 .load(R.drawable.missing)
                 .into(imgV);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PlayButton.releaseMediaPlayer();
     }
 }
 
