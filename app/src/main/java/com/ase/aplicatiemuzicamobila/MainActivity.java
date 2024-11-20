@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideExtension;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
     TextView load;
     ImageView imgV;
+    ImageView imgVAnimated;
 
     private final ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
@@ -88,13 +90,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imgV = findViewById(R.id.imageView);
+        imgVAnimated=findViewById(R.id.imgVVynil);
+        imgVAnimated.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.vynil,null));
+
         tvSongName = findViewById(R.id.tvSongName);
         tvCurrentTime=findViewById(R.id.tvDurationCurrent);
         tvFinalTime=findViewById(R.id.tvDurationFinal);
         load = findViewById(R.id.btnLoad);
         load.setOnClickListener(v -> launcher.launch("audio/*"));
 
-        btnPlayPause = PlayButton.getPlayPauseInstance(findViewById(R.id.btnPlay),MediaPlayer.create(this,R.raw.bna),getApplicationContext());
+        btnPlayPause = PlayButton.getPlayPauseInstance(findViewById(R.id.btnPlay),imgVAnimated,MediaPlayer.create(this,R.raw.bna),getApplicationContext());
     }
 
     public void stopSong(View v) {
