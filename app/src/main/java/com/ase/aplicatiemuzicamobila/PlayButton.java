@@ -4,7 +4,6 @@ package com.ase.aplicatiemuzicamobila;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.core.content.res.ResourcesCompat;
@@ -47,22 +46,34 @@ public class PlayButton {
     }
 
     public void playSong(Context context){
-        mediaPlayer.start();
+        btnInstance.mediaPlayer.start();
         btnPlayPause.setBackground(ResourcesCompat.getDrawable(context.getResources(),R.drawable.pause,null));
     }
 
     public void pauseSong(Context context) {
-        mediaPlayer.pause();
+        btnInstance.mediaPlayer.pause();
         btnPlayPause.setBackground(ResourcesCompat.getDrawable(context.getResources(),R.drawable.play,null));
     }
 
-    public void stopSong(View v) {
-        mediaPlayer.stop();
+    public void stopSong() {
+        btnInstance.mediaPlayer.stop();
     }
 
-    public void changeMediaplayer (MediaPlayer media){
+    public void changeMediaPlayer(MediaPlayer media){
         PlayButton.releaseMediaPlayer();
         this.mediaPlayer=media;
 
+    }
+
+    public MediaPlayer getMediaPlayer() {
+        return btnInstance.mediaPlayer;
+    }
+
+    public boolean isPlaying() {
+        return btnInstance.isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
     }
 }
