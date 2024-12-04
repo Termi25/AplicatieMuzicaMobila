@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/white"
+    tools:context=".Activities.PlayerActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="500dp"
+        android:background="@drawable/border_list_rounded"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
+        android:padding="5dp"
+        android:src="@drawable/missing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_min="100dp"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toEndOf="@+id/imgVVynil"
+        app:layout_constraintTop_toTopOf="@+id/imgVVynil"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_min="100dp" />
+
+    <TextView
+        android:id="@+id/btnLoad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/border_list_rounded"
+        android:fontFamily="monospace"
+        android:padding="5dp"
+        android:text="Load Song"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgVVynil"
+        app:layout_constraintStart_toStartOf="@+id/imgVVynil"
+        app:layout_constraintTop_toBottomOf="@+id/imgVVynil"
+        app:layout_constraintVertical_bias="0.096" />
+
+    <TextView
+        android:id="@+id/tvSongName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:singleLine="false"
+        android:text="BNA Ending Song"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imgVVynil"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.372" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlay"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvSongName"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.789" />
+
+    <ImageButton
+        android:id="@+id/btnSkipBackward"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/next"
+        android:clickable="true"
+        android:contentDescription="@string/skip_forward_button"
+        android:onClick="skypForwardSong"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        android:scaleX="-1"
+        android:textColor="@color/black"
+        android:textColorLink="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay"
+        app:layout_constraintVertical_bias="0.0"
+        app:rippleColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvDurationFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--:--:--"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlay"
+        app:layout_constraintEnd_toEndOf="@+id/seekBar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnPlay"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btnSkipForward"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/next"
+        android:clickable="true"
+        android:contentDescription="@string/skip_forward_button"
+        android:onClick="skypForwardSong"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        android:textColor="@color/black"
+        android:textColorLink="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toEndOf="@+id/btnPlay"
+        app:layout_constraintTop_toTopOf="@+id/btnPlay"
+        app:layout_constraintVertical_bias="0.0"
+        app:rippleColor="@color/black" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/play"
+        android:clickable="true"
+        android:contentDescription="@string/play_button"
+        android:onClick="playSong"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <TextView
+        android:id="@+id/tvDurationCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--:--:--"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlay"
+        app:layout_constraintEnd_toEndOf="@+id/btnPlay"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imgVVynil"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        app:srcCompat="@drawable/music_app_logo3" />
+
+    <TextView
+        android:id="@+id/tvList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/border_list_rounded"
+        android:padding="5dp"
+        android:text="Song List"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgVVynil"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imgVVynil"
+        app:layout_constraintTop_toBottomOf="@+id/imgVVynil"
+        app:layout_constraintVertical_bias="0.016" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

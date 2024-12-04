@@ -4,4 +4,5 @@
     <string name="play_button">Play Button</string>
     <string name="pause_button">Pause Button</string>
     <string name="music_player_android">Music Player Android</string>
+    <string name="skip_forward_button">Skip forward Button</string>
 </resources>

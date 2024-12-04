@@ -1,4 +1,4 @@
-package com.ase.aplicatiemuzicamobila;
+package com.ase.aplicatiemuzicamobila.Activities;
 
 import android.database.Cursor;
 import android.media.MediaMetadataRetriever;
@@ -7,9 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -18,9 +16,11 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import com.ase.aplicatiemuzicamobila.R;
+import com.ase.aplicatiemuzicamobila.FunctionalClasses.SongPlayer;
 import com.bumptech.glide.Glide;
 
-public class MainActivity extends AppCompatActivity {
+public class PlayerActivity extends AppCompatActivity {
 
     SongPlayer btnPlayPause;
     TextView tvSongName;
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_player);
 
         imgV = findViewById(R.id.imageView);
         imgVAnimated=findViewById(R.id.imgVVynil);
-        imgVAnimated.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.vynil,null));
+        imgVAnimated.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.music_app_logo2,null));
 
         tvSongName = findViewById(R.id.tvSongName);
         load = findViewById(R.id.btnLoad);

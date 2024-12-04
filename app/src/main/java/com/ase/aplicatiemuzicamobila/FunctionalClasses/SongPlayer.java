@@ -1,8 +1,7 @@
-package com.ase.aplicatiemuzicamobila;
+package com.ase.aplicatiemuzicamobila.FunctionalClasses;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
+import com.ase.aplicatiemuzicamobila.R;
 import com.bumptech.glide.Glide;
 
 public class SongPlayer {
@@ -73,19 +73,19 @@ public class SongPlayer {
             }
         });
 
-        this.btnStop=activity.findViewById(R.id.btnStop);
-        this.btnStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopSong();
-            }
-        });
+//        this.btnStop=activity.findViewById(R.id.btnStop);
+//        this.btnStop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                stopSong();
+//            }
+//        });
 
         this.btnPlayPause.setOnClickListener(v -> {
             Animation animation= AnimationUtils.loadAnimation(activity.getApplicationContext(),R.anim.vynil_animation);
             animation.setInterpolator(new LinearInterpolator());
             animation.setRepeatCount(Animation.INFINITE);
-            animation.setDuration(1400);
+            animation.setDuration(3000);
 
             if(mediaPlayer.isPlaying()){
                 pauseSong();
@@ -116,7 +116,6 @@ public class SongPlayer {
     public void pauseSong() {
         btnInstance.mediaPlayer.pause();
         this.imgVPlaying.clearAnimation();
-        this.imgVPlaying.setImageDrawable(ResourcesCompat.getDrawable(activity.getApplicationContext().getResources(),R.drawable.vynil,null));
         btnPlayPause.setBackground(ResourcesCompat.getDrawable(activity.getResources(),R.drawable.play,null));
     }
 
