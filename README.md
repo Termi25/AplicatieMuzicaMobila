@@ -2,7 +2,7 @@
 
 # InfiniMusic
 $${\color{red}WARNING!}$$
-**This project was made as a passion project and may present some technical issues.**
+**This project is a passion project and may present some technical issues.**
 
 ## Description
 This is an Android Music App meant to be used for offline music listening especially.
