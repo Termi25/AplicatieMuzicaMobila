@@ -20,12 +20,12 @@ public class AudioListViewHolder  extends RecyclerView.ViewHolder {
     }
 
     public void bind(AudioListElement audioElement){
-        this.tvSongTitle.setText(audioElement.getSongTitle());
+        this.tvSongTitle.setText(audioElement.getFileName());
     }
 
     public static AudioListViewHolder create(ViewGroup parent){
         View view= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_songlist,parent,false);
+                .inflate(R.layout.view_audio_element,parent,false);
         return new AudioListViewHolder (view);
     }
 }

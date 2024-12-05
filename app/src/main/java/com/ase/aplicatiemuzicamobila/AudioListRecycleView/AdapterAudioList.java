@@ -35,12 +35,12 @@ public class AdapterAudioList extends ListAdapter<AudioListElement, AudioListVie
 
         @Override
         public boolean areItemsTheSame(@NonNull AudioListElement oldItem, @NonNull AudioListElement newItem) {
-            return oldItem.getSongTitle().equals(newItem.getSongTitle());
+            return oldItem.getFileUri().equals(newItem.getFileUri());
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull AudioListElement oldItem, @NonNull AudioListElement newItem) {
-            return oldItem.getSongTitle().equals(newItem.getSongTitle());
+            return oldItem.getFileName().equals(newItem.getFileName());
         }
     }
 }

@@ -16,7 +16,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="500dp"
+        android:layout_marginBottom="550dp"
         android:background="@drawable/border_list_rounded"
         android:minWidth="100dp"
         android:minHeight="100dp"
@@ -35,24 +35,30 @@
         android:id="@+id/btnLoad"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/border_list_rounded"
         android:fontFamily="monospace"
         android:padding="5dp"
         android:text="Load Song"
         android:textColor="@color/black"
-        android:textSize="10sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imgVVynil"
-        app:layout_constraintStart_toStartOf="@+id/imgVVynil"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgVVynil"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvSongName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
         android:singleLine="false"
         android:text="BNA Ending Song"
         android:textAlignment="center"
@@ -60,11 +66,11 @@
         android:textSize="24sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imgVVynil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.372" />
+        app:layout_constraintVertical_bias="0.386" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -140,7 +146,6 @@
         android:background="@drawable/play"
         android:clickable="true"
         android:contentDescription="@string/play_button"
-        android:onClick="playSong"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -166,27 +171,23 @@
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024"
-        app:srcCompat="@drawable/music_app_logo4" />
+        app:srcCompat="@drawable/music_app_logo6" />
 
-    <TextView
-        android:id="@+id/tvList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlvSongs"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/border_list_rounded"
         android:padding="5dp"
-        android:text="Song List"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imgVVynil"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imgVVynil"
-        app:layout_constraintTop_toBottomOf="@+id/imgVVynil"
-        app:layout_constraintVertical_bias="0.016" />
+        app:layout_constraintBottom_toTopOf="@+id/tvSongName"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/btnLoad"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
