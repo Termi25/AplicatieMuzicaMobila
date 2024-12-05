@@ -6,9 +6,8 @@ import android.net.Uri;
 public class AudioListElement {
     private Uri fileUri;
     private String fileName;
+    private String artistName;
     private int mimeType;
-    private AudioListElement beforeCurrentElement;
-    private AudioListElement afterCurrentElement;
 
     private AudioListElement(){}
 
@@ -42,20 +41,12 @@ public class AudioListElement {
         this.mimeType = mimeType;
     }
 
-    public AudioListElement getBeforeCurrentElement() {
-        return beforeCurrentElement;
+    public String getArtistName() {
+        return artistName;
     }
 
-    public void setBeforeCurrentElement(AudioListElement beforeCurrentMediaFile) {
-        this.beforeCurrentElement = beforeCurrentMediaFile;
-    }
-
-    public AudioListElement getAfterCurrentElement() {
-        return afterCurrentElement;
-    }
-
-    public void setAfterCurrentElement(AudioListElement afterCurrentMediaFile) {
-        this.afterCurrentElement = afterCurrentMediaFile;
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
     }
 
     @Override
@@ -64,8 +55,8 @@ public class AudioListElement {
                 "fileUri=" + fileUri +
                 ", fileName='" + fileName + '\'' +
                 ", mimeType=" + mimeType +
-                ", beforeCurrentElement=" + beforeCurrentElement +
-                ", afterCurrentElement=" + afterCurrentElement +
                 '}';
     }
 }
+
+

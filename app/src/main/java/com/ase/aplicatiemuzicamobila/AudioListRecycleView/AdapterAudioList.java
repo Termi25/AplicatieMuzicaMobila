@@ -28,8 +28,10 @@ public class AdapterAudioList extends ListAdapter<AudioListElement, AudioListVie
     @Override
     public void onBindViewHolder(@NonNull AudioListViewHolder holder, int position) {
         AudioListElement curenta=getItem(position);
-        holder.bind(curenta);
+        holder.bind(curenta,position);
     }
+
+
 
     public static class AudioElementDiff extends DiffUtil.ItemCallback<AudioListElement>{
 
@@ -40,7 +42,7 @@ public class AdapterAudioList extends ListAdapter<AudioListElement, AudioListVie
 
         @Override
         public boolean areContentsTheSame(@NonNull AudioListElement oldItem, @NonNull AudioListElement newItem) {
-            return oldItem.getFileName().equals(newItem.getFileName());
+            return oldItem.getFileUri().equals(newItem.getFileUri());
         }
     }
 }

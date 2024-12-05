@@ -13,14 +13,18 @@ import com.ase.aplicatiemuzicamobila.StorageClasses.AudioListElement;
 
 public class AudioListViewHolder  extends RecyclerView.ViewHolder {
     TextView tvSongTitle;
+    TextView tvSongArtist;
 
     public AudioListViewHolder(@NonNull View itemView) {
         super(itemView);
         tvSongTitle=itemView.findViewById(R.id.tvSongTitle);
+        tvSongArtist=itemView.findViewById(R.id.tvArtistName);
     }
 
-    public void bind(AudioListElement audioElement){
-        this.tvSongTitle.setText(audioElement.getFileName());
+    public void bind(AudioListElement audioElement, int position){
+        this.tvSongTitle.setText(audioElement.getFileName().split("\\.")[0]);
+        this.tvSongArtist.setText(audioElement.getArtistName());
+
     }
 
     public static AudioListViewHolder create(ViewGroup parent){

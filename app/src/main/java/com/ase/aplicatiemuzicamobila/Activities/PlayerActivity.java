@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -137,13 +138,9 @@ public class PlayerActivity extends AppCompatActivity {
                     Log.e("Exception audio file image",e.toString());
                 }
                 try {
-                    String songTitle = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
-                    if(songTitle==null){
-                        songTitle=getFileName(item.getFileUri());
-                    }
-                    int length=songTitle.length();
+                    int length=item.getFileName().split("\\.")[0].length();
                     if(length>25){
-                        tvSongName.setTextSize(10.0F);
+                        tvSongName.setTextSize(14.0F);
                     }else{
                         if(length>20){
                             tvSongName.setTextSize(16.0F);
@@ -151,8 +148,7 @@ public class PlayerActivity extends AppCompatActivity {
                             tvSongName.setTextSize(24.0F);
                         }
                     }
-
-                    tvSongName.setText(songTitle);
+                    tvSongName.setText(item.getFileName().split("\\.")[0]);
                 } catch (Exception e) {
                     Log.e("Exception Releasing MediaMetadataRetriever",e.toString());
                 }
@@ -178,7 +174,6 @@ public class PlayerActivity extends AppCompatActivity {
             this.queryUri = MediaStore.Files.getContentUri("external");
         }
 
-        String[] filtering=new String[]{"audio/%"};
         try(Cursor cursor=this.getContentResolver().query(queryUri,
                 new String[]{MediaStore.Files.FileColumns._ID,MediaStore.Files.FileColumns.DISPLAY_NAME},
                 null,
@@ -201,16 +196,20 @@ public class PlayerActivity extends AppCompatActivity {
                     mediaType=2;
                 }
 
-                if(name!=null && mediaType!=0){
+                if(mediaType != 0){
                     Uri contentUri= ContentUris.withAppendedId(queryUri,id);
-                    System.out.println(name);
                     songList.add(new AudioListElement(contentUri,name,mediaType));
                 }
             }
         }
+        //TO-DO: Opmitise import for faster app loading time
+        MediaMetadataRetriever mediaMetadataRetriever = (MediaMetadataRetriever) new MediaMetadataRetriever();
+        for (AudioListElement item:songList) {
+            mediaMetadataRetriever.setDataSource(getApplicationContext(), item.getFileUri());
+            item.setArtistName(mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)!=null ? mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST) : "No Artist");
+        }
         this.adapterSongList.submitList(songList);
-        this.rlvSongList.getAdapter().notifyDataSetChanged();
-
+        this.adapterSongList.submitList(songList);
         imgV = findViewById(R.id.imageView);
         imgVAnimated=findViewById(R.id.imgVVynil);
         imgVAnimated.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.music_app_logo4,null));

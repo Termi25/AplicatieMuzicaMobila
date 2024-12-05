@@ -130,7 +130,7 @@ public class SongPlayer {
     }
 
     public void changeMediaPlayer(MediaPlayer media){
-        SongPlayer.releaseMediaPlayer();
+        btnInstance.mediaPlayer.release();
         this.mediaPlayer=media;
         this.mediaPlayer.setOnCompletionListener(mp -> {
             pauseSong();
