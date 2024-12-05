@@ -85,7 +85,7 @@ public class PlayerActivity extends AppCompatActivity {
 
         imgV = findViewById(R.id.imageView);
         imgVAnimated=findViewById(R.id.imgVVynil);
-        imgVAnimated.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.music_app_logo2,null));
+        imgVAnimated.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.music_app_logo4,null));
 
         tvSongName = findViewById(R.id.tvSongName);
         load = findViewById(R.id.btnLoad);
