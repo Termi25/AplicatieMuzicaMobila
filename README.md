@@ -1,4 +1,4 @@
-<img src="/app/src/main/res/drawable/music_app_logo5_alt.png" alt="InfiniMusic Logo" width="150px"/>
+<img src="/app/src/main/res/drawable/music_app_logo6.png" alt="InfiniMusic Logo" width="150px"/>
 
 # InfiniMusic
 $${\color{red}WARNING!}$$
