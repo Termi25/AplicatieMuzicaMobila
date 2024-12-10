@@ -202,13 +202,6 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             }
         }
-        //TO-DO: Opmitise import for faster app loading time
-        MediaMetadataRetriever mediaMetadataRetriever = (MediaMetadataRetriever) new MediaMetadataRetriever();
-        for (AudioListElement item:songList) {
-            mediaMetadataRetriever.setDataSource(getApplicationContext(), item.getFileUri());
-            item.setArtistName(mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)!=null ? mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST) : "No Artist");
-        }
-        this.adapterSongList.submitList(songList);
         this.adapterSongList.submitList(songList);
         imgV = findViewById(R.id.imageView);
         imgVAnimated=findViewById(R.id.imgVVynil);

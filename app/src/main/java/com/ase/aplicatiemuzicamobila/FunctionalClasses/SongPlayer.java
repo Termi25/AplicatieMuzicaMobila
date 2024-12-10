@@ -167,7 +167,7 @@ public class SongPlayer {
         return finalTimerString;
     }
 
-    private Runnable mUpdateSeek = new Runnable() {
+    private final Runnable mUpdateSeek = new Runnable() {
         public void run() {
             int currentDuration;
             if (btnInstance.mediaPlayer.isPlaying()) {

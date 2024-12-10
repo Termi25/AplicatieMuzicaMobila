@@ -1,5 +1,9 @@
 package com.ase.aplicatiemuzicamobila.AudioListRecycleView;
 
+import android.content.Context;
+import android.media.AudioMetadata;
+import android.media.AudioMetadataMap;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +18,21 @@ import com.ase.aplicatiemuzicamobila.StorageClasses.AudioListElement;
 public class AudioListViewHolder  extends RecyclerView.ViewHolder {
     TextView tvSongTitle;
     TextView tvSongArtist;
+    Context context;
 
     public AudioListViewHolder(@NonNull View itemView) {
         super(itemView);
         tvSongTitle=itemView.findViewById(R.id.tvSongTitle);
         tvSongArtist=itemView.findViewById(R.id.tvArtistName);
+        this.context= itemView.getContext();
     }
 
     public void bind(AudioListElement audioElement, int position){
         this.tvSongTitle.setText(audioElement.getFileName().split("\\.")[0]);
-        this.tvSongArtist.setText(audioElement.getArtistName());
+        MediaMetadataRetriever dataRetriever=new MediaMetadataRetriever();
+        dataRetriever.setDataSource(this.context,audioElement.getFileUri());
 
+        this.tvSongArtist.setText(dataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
     }
 
     public static AudioListViewHolder create(ViewGroup parent){
