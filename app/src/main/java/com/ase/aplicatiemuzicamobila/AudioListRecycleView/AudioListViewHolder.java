@@ -28,11 +28,15 @@ public class AudioListViewHolder  extends RecyclerView.ViewHolder {
     }
 
     public void bind(AudioListElement audioElement, int position){
-        this.tvSongTitle.setText(audioElement.getFileName().split("\\.")[0]);
+
         MediaMetadataRetriever dataRetriever=new MediaMetadataRetriever();
         dataRetriever.setDataSource(this.context,audioElement.getFileUri());
-
-        this.tvSongArtist.setText(dataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+        audioElement.setFileName(audioElement.getFileName().replace(".mp3"," ").replace(".flac"," "));
+        if(audioElement.getArtistName()==null){
+            audioElement.setArtistName(dataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+        }
+        this.tvSongTitle.setText(audioElement.getFileName());
+        this.tvSongArtist.setText(audioElement.getArtistName());
     }
 
     public static AudioListViewHolder create(ViewGroup parent){
