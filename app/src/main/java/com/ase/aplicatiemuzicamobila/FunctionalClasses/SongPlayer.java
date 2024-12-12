@@ -3,7 +3,6 @@ package com.ase.aplicatiemuzicamobila.FunctionalClasses;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;

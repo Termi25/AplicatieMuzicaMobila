@@ -138,17 +138,11 @@ public class PlayerActivity extends AppCompatActivity {
                     Log.e("Exception audio file image",e.toString());
                 }
                 try {
-                    int length=item.getFileName().split("\\.")[0].length();
-                    if(length>25){
-                        tvSongName.setTextSize(14.0F);
-                    }else{
-                        if(length>20){
-                            tvSongName.setTextSize(16.0F);
-                        }else{
-                            tvSongName.setTextSize(24.0F);
-                        }
-                    }
-                    tvSongName.setText(item.getFileName().split("\\.")[0]);
+                    int length=item.getFileName().replace(".mp3"," ").replace(".flac"," ").length();
+                    float standardFontSize=24.0F;
+                    float adjustedFontSize=standardFontSize-((float) length /10);
+                    tvSongName.setTextSize(adjustedFontSize);
+                    tvSongName.setText(item.getFileName().replace(".mp3"," ").replace(".flac"," "));
                 } catch (Exception e) {
                     Log.e("Exception Releasing MediaMetadataRetriever",e.toString());
                 }
